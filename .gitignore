@@ -1,0 +1,15 @@
+node_modules
+
+/.cache
+/build
+/public/build
+.env
+!.env.template
+
+.DS_Store
+
+.history
+
+TODO.md
+
+.github/workflows/*.yml
