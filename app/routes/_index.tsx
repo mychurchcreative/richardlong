@@ -54,7 +54,8 @@ export default function Index() {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Husband, father, pastor, and best-selling author.
+            A disciple of Jesus Christ and former Associate Pastor at Antioch
+            Baptist Church.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             {pastor?.bio}
@@ -67,49 +68,61 @@ export default function Index() {
             <Prose className="border-b border-zinc-100 dark:border-zinc-700/40">
               <h2>Recent Articles</h2>
             </Prose>
-            {posts.map((article) => (
-              <Card as="article" key={article._id}>
-                <Card.Title href={`/blog/${article.slug}`}>
-                  {article.title}
-                </Card.Title>
-                <Card.Eyebrow as="time" dateTime={article._createdAt} decorate>
-                  {formatDate(article._createdAt)}
-                </Card.Eyebrow>
-                {/* TODO: add meta description or summary field */}
-                {article.seo?.description ? (
-                  <Card.Description>
-                    {article.seo?.description}
-                  </Card.Description>
-                ) : null}
-                <Card.Cta>Read article</Card.Cta>
-              </Card>
-            ))}
+            {posts.length ? (
+              posts.map((article) => (
+                <Card as="article" key={article._id}>
+                  <Card.Title href={`/blog/${article.slug}`}>
+                    {article.title}
+                  </Card.Title>
+                  <Card.Eyebrow
+                    as="time"
+                    dateTime={article._createdAt}
+                    decorate
+                  >
+                    {formatDate(article._createdAt)}
+                  </Card.Eyebrow>
+                  {/* TODO: add meta description or summary field */}
+                  {article.seo?.description ? (
+                    <Card.Description>
+                      {article.seo?.description}
+                    </Card.Description>
+                  ) : null}
+                  <Card.Cta>Read article</Card.Cta>
+                </Card>
+              ))
+            ) : (
+              <p>Nothing yet.</p>
+            )}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <Prose className="border-b border-zinc-100 dark:border-zinc-700/40">
               <h2>Sermons</h2>
             </Prose>
-            {sermons.map((sermon) => (
-              <Card as="article" key={sermon._id}>
-                {/* {sermon.videoId && sermon.poster ? (
+            {sermons.length ? (
+              sermons.map((sermon) => (
+                <Card as="article" key={sermon._id}>
+                  {/* {sermon.videoId && sermon.poster ? (
                   <VideoPoster poster={sermon.poster} slug={sermon.videoId} />
                 ) : null} */}
-                <Card.Title
-                  href={`https://www.youtube-nocookie.com/embed/${sermon.videoId}`}
-                  openInNewTab
-                >
-                  {sermon.title}
-                </Card.Title>
-                {sermon.date ? (
-                  <Card.Eyebrow as="time" dateTime={sermon.date} decorate>
-                    {formatDate(sermon.date)}
-                  </Card.Eyebrow>
-                ) : null}
-                {/* TODO: add meta description or summary field */}
-                {/* <Card.Description>{article.description ?? ''}</Card.Description> */}
-                <Card.Cta>Watch sermon</Card.Cta>
-              </Card>
-            ))}
+                  <Card.Title
+                    href={`https://www.youtube-nocookie.com/embed/${sermon.videoId}`}
+                    openInNewTab
+                  >
+                    {sermon.title}
+                  </Card.Title>
+                  {sermon.date ? (
+                    <Card.Eyebrow as="time" dateTime={sermon.date} decorate>
+                      {formatDate(sermon.date)}
+                    </Card.Eyebrow>
+                  ) : null}
+                  {/* TODO: add meta description or summary field */}
+                  {/* <Card.Description>{article.description ?? ''}</Card.Description> */}
+                  <Card.Cta>Watch sermon</Card.Cta>
+                </Card>
+              ))
+            ) : (
+              <p>Nothing yet.</p>
+            )}
             {/* <Newsletter />
             <Resume /> */}
           </div>
