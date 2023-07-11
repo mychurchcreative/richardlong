@@ -84,6 +84,9 @@ export const siteSettingsQuery = groq`
       bio,
       image {
         ${imageFieldsFragment}
+      },
+      profileImage {
+        ${imageFieldsFragment}
       }
     },
   }
