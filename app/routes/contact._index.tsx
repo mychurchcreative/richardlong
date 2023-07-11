@@ -1,4 +1,4 @@
-import { LoaderArgs, V2_MetaFunction, json } from '@remix-run/node';
+import { LoaderArgs, V2_MetaFunction, json, redirect } from '@remix-run/node';
 import { useLoaderData, useRouteLoaderData } from '@remix-run/react';
 import { Container } from '~/components/container';
 import { Image } from '~/components/image';
@@ -11,9 +11,11 @@ import {
 } from '~/components/social';
 import { SocialLink } from '~/components/social/socialLink';
 import { useRootLoaderData } from '~/lib/helpers';
-import { loader } from '~/root';
 
-export const meta: V2_MetaFunction<typeof loader> = ({ params, data }) => {
+export const meta: V2_MetaFunction<typeof useRootLoaderData> = ({
+  params,
+  data,
+}) => {
   const { siteTitle } = useRootLoaderData();
 
   const title = ['Contact', siteTitle].filter(Boolean).join(' | ');
@@ -32,12 +34,16 @@ export const meta: V2_MetaFunction<typeof loader> = ({ params, data }) => {
   ];
 };
 
-// export const loader = async ({ request }: LoaderArgs) => {
-//   //   const { preview } = await getPreviewToken(request);
-// //   const { settings } = useRootLoaderData();
-// //   const { pastor } = settings ?? {};
-// //   return json({ pastor });
-// };
+export const loader = async ({ request }: LoaderArgs) => {
+  // TODO: we may need to build out this page, but for now, just redirect to the homepage
+  throw redirect('/', {
+    status: 307,
+  });
+  //   const { preview } = await getPreviewToken(request);
+  //   const { settings } = useRootLoaderData();
+  //   const { pastor } = settings ?? {};
+  //   return json({ pastor });
+};
 
 const ContactRoute = () => {
   const { settings } = useRootLoaderData();
