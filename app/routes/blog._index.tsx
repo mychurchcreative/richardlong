@@ -76,14 +76,18 @@ export default function BlogIndex() {
   return (
     <>
       <SimpleLayout
-        title="Aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
-        intro="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget neque egestas, iaculis dui vel, eleifend orci. Nam vitae felis interdum, rhoncus mi at, mattis neque. Fusce nisl turpis, sodales non efficitur quis, mollis et urna."
+        title="Learning to live like Jesus Christ with Richard Long."
+        intro="...discipling as Jesus Christ teaches..."
       >
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
           <div className="flex max-w-3xl flex-col space-y-16">
-            {posts.map((article) => (
-              <Article key={article.slug} article={article} />
-            ))}
+            {posts.length ? (
+              posts.map((article) => (
+                <Article key={article.slug} article={article} />
+              ))
+            ) : (
+              <p>No posts yet.</p>
+            )}
           </div>
         </div>
       </SimpleLayout>
