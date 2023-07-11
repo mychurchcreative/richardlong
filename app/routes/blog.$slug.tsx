@@ -63,13 +63,13 @@ export const meta: V2_MetaFunction<typeof loader> = ({ data, params }) => {
 
 export const loader = async ({ params, request }: LoaderArgs) => {
   const { preview } = await getPreviewToken(request);
-  console.log({ preview });
+
   const { slug } = params;
 
   // const segment = `blog/${slug}`;
 
   const post = await getPostBySlug({ preview, slug });
-  console.log({ post });
+
   if (!post) {
     throw redirect(`/error/404`, 308);
   }
@@ -83,7 +83,7 @@ export const loader = async ({ params, request }: LoaderArgs) => {
 
 export default function BlogPostRoute() {
   const { post, query, params } = useLoaderData<typeof loader>();
-  console.log({ post, query, params });
+
   return (
     <PreviewWrapper
       data={post}

@@ -63,13 +63,11 @@ export const meta: V2_MetaFunction<typeof loader> = ({ data, params }) => {
 
 export const loader = async ({ params, request }: LoaderArgs) => {
   const { preview } = await getPreviewToken(request);
-  console.log({ preview });
   const { slug } = params;
 
   // const segment = `blog/${slug}`;
 
   const devotional = await getDevotionalBySlug({ preview, slug });
-  console.log({ devotional });
   if (!devotional) {
     throw redirect(`/error/404`, 308);
   }
@@ -83,7 +81,6 @@ export const loader = async ({ params, request }: LoaderArgs) => {
 
 export default function BlogDevotionalRoute() {
   const { devotional, query, params } = useLoaderData<typeof loader>();
-  console.log({ devotional, query, params });
   return (
     <PreviewWrapper
       data={devotional}
