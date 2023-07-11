@@ -129,7 +129,7 @@ export const devotionalsQuery = groq`
   }
 `;
 export const devotionalBySlugQuery = groq`
-*[_type == "post" && slug.current == $slug][0] {
+*[_type == "devotional" && slug.current == $slug][0] {
   _id,
   _type,
   _createdAt,
