@@ -171,7 +171,7 @@ export default function App() {
 
   return (
     <Document isStudio={isStudio} title={siteTitle}>
-      {isStudio || production ? (
+      {isStudio ? (
         <Outlet />
       ) : (
         <>
