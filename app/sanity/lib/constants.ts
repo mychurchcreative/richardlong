@@ -1,3 +1,4 @@
+import devotional from '../schema/documents/devotional';
 import post from '../schema/documents/post';
 
 // References to include in 'internal' links
@@ -13,7 +14,10 @@ export const PAGE_REFERENCES = [{ type: 'post' }];
 //   { title: 'Quote', value: 'blockquote' },
 // ];
 
-export const PREVIEWABLE_DOCUMENT_TYPES: string[] = [post.name];
+export const PREVIEWABLE_DOCUMENT_TYPES: string[] = [
+  post.name,
+  devotional.name,
+];
 
 // All available sanity schema types should be included here
 // export const PAGE_BUILDER_TYPES = ['hero', 'form'] as const;

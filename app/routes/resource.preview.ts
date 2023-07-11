@@ -77,6 +77,13 @@ export const loader = async ({ request }: LoaderArgs) => {
       validSlug = `/blog/${slug}`;
 
       break;
+    case 'devotional':
+      if (!slug) {
+        return noSlugFound();
+      }
+      validSlug = `/devotionals/${slug}`;
+
+      break;
   }
 
   function noSlugFound() {

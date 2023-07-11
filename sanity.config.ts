@@ -8,11 +8,13 @@ import { noteField } from 'sanity-plugin-note-field';
 import { PublishPageWithSlugAction } from '~/sanity/actions/PublishPageWithSlugAction';
 import StudioNavBar from '~/sanity/components/studio/StudioNavBar';
 import { defaultDocumentNode, structure } from '~/sanity/desk/structure';
-import { PAGE_REFERENCES } from '~/sanity/lib/constants';
+import {
+  PAGE_REFERENCES,
+  PREVIEWABLE_DOCUMENT_TYPES,
+} from '~/sanity/lib/constants';
 import { productionUrl } from '~/sanity/plugins/productionUrl';
 import { projectDetails } from '~/sanity/projectDetails';
 import schema, { singletonTypes } from '~/sanity/schema';
-import post from '~/sanity/schema/documents/post';
 import { tags } from 'sanity-plugin-tags';
 
 const devOnlyPlugins = [visionTool()];
@@ -32,7 +34,7 @@ export const config = defineConfig({
     unsplashImageAsset(),
     noteField(),
     productionUrl({
-      types: [post.name],
+      types: PREVIEWABLE_DOCUMENT_TYPES,
     }),
     tags({}),
   ],

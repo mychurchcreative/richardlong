@@ -27,6 +27,7 @@ import { isAdminUser } from '../lib/helpers';
 import category from '../schema/documents/category';
 import tag from '../schema/documents/tag';
 import parentChild from './parent-child';
+import devotional from '../schema/documents/devotional';
 
 export const structure: StructureResolver = (S, context) => {
   const { currentUser } = context;
@@ -130,7 +131,7 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (
     .icon(VscReferences)
     .title('References');
 
-  if ([post.name as string].includes(schemaType)) {
+  if ([post.name as string, devotional.name].includes(schemaType)) {
     return S.document().views([
       // Default form view
       S.view.form().icon(RiEditLine),
