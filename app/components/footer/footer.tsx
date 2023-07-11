@@ -3,6 +3,7 @@ import { useRootLoaderData } from '~/lib/helpers';
 import { Container } from '../container';
 import { InstagramIcon, LinkedInIcon, TwitterIcon } from '../social';
 import { SocialLink } from '../social/socialLink';
+import { RiFacebookFill } from 'react-icons/ri';
 
 export function Footer() {
   const { siteTitle } = useRootLoaderData();
@@ -14,19 +15,16 @@ export function Footer() {
             <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
               <ul className="flex gap-6">
                 <SocialLink
-                  to="https://twitter.com"
+                  to="https://www.facebook.com/profile.php?id=100076390248419"
+                  aria-label="Follow on Facebook"
+                  icon={RiFacebookFill}
+                  target="_blank"
+                />
+                <SocialLink
+                  to="https://twitter.com/richardlongsr"
                   aria-label="Follow on Twitter"
                   icon={TwitterIcon}
-                />
-                <SocialLink
-                  to="https://instagram.com"
-                  aria-label="Follow on Instagram"
-                  icon={InstagramIcon}
-                />
-                <SocialLink
-                  to="https://linkedin.com"
-                  aria-label="Follow on LinkedIn"
-                  icon={LinkedInIcon}
+                  target="_blank"
                 />
               </ul>
               <p className="text-sm text-zinc-400 dark:text-zinc-500">

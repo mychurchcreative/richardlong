@@ -1,16 +1,12 @@
-import { LoaderArgs, V2_MetaFunction, json } from '@remix-run/node';
-import { useLoaderData, useRouteLoaderData } from '@remix-run/react';
+import { V2_MetaFunction } from '@remix-run/node';
 import { Container } from '~/components/container';
 import { Image } from '~/components/image';
-import {
-  InstagramIcon,
-  LinkedInIcon,
-  MailIcon,
-  TwitterIcon,
-} from '~/components/social';
+import { MailIcon, TwitterIcon } from '~/components/social';
 import { SocialLink } from '~/components/social/socialLink';
 import { useRootLoaderData } from '~/lib/helpers';
 import { loader } from '~/root';
+import { FaFacebookF } from 'react-icons/fa';
+import { RiFacebookFill } from 'react-icons/ri';
 
 export const meta: V2_MetaFunction<typeof loader> = ({ params, data }) => {
   const { siteTitle } = useRootLoaderData();
@@ -43,6 +39,7 @@ const AboutRoute = () => {
   const { pastor } = settings ?? {};
 
   const image = pastor?.profileImage ?? pastor?.image;
+  const email = pastor?.email ?? '#';
 
   return (
     <Container className="mt-16 sm:mt-32">
@@ -88,22 +85,33 @@ const AboutRoute = () => {
           </div>
         </div>
         <div className="lg:pl-20">
-          <ul role="list">
-            <SocialLink to="#" icon={TwitterIcon}>
-              Follow on Twitter
-            </SocialLink>
-            <SocialLink to="#" icon={InstagramIcon} className="mt-4">
-              Follow on Instagram
-            </SocialLink>
-            <SocialLink to="#" icon={LinkedInIcon} className="mt-4">
-              Follow on LinkedIn
+          <ul className="space-y-2">
+            <SocialLink
+              to="https://www.facebook.com/profile.php?id=100076390248419"
+              icon={RiFacebookFill}
+              target="_blank"
+            >
+              Follow on Facebook
             </SocialLink>
             <SocialLink
-              to="mailto:pastor@example.com"
+              to="https://twitter.com/richardlongsr"
+              icon={TwitterIcon}
+              target="_blank"
+            >
+              Follow on Twitter
+            </SocialLink>
+            {/* <SocialLink to="#" icon={InstagramIcon} className="mt-4">
+              Follow on Instagram
+            </SocialLink> */}
+            {/* <SocialLink to="#" icon={LinkedInIcon} className="mt-4">
+              Follow on LinkedIn
+            </SocialLink> */}
+            <SocialLink
+              to={`mailto:${email}`}
               icon={MailIcon}
               className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
             >
-              pastor@example.com
+              {email}
             </SocialLink>
           </ul>
         </div>
