@@ -67,46 +67,23 @@ const AboutRoute = () => {
         ) : null}
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            I’m Pastor John. I live in New York City, where lorem ipsum dolor
-            sit amet.
+            Richard H. J. Long
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec
-              mauris blandit, molestie ipsum eget, condimentum justo. Integer
-              lacus eros, blandit ut eleifend non, ornare sit amet sem. Nullam
-              consectetur metus ac quam egestas, quis venenatis elit mattis. In
-              ut nisi enim. Integer varius semper justo, sed venenatis urna
-              pellentesque sit amet. Cras pretium placerat odio, vitae tempor
-              velit congue sed. Duis sed augue diam.
+              Hello, I am Richard H. J. Long from Johnson City, TN. I am a
+              disciple of Jesus Christ, the Son of God. I actually became a true
+              disciple of Jesus on March 31, 2005.
             </p>
             <p>
-              Mauris aliquet quam nec scelerisque rutrum. Nunc vehicula egestas
-              varius. Nam sed nisl urna. Praesent ut ligula maximus, varius urna
-              non, sodales libero. Donec a metus tortor. Donec varius vestibulum
-              purus id dictum. In aliquam tempus mi, a aliquam lorem maximus
-              nec. Etiam quis lectus a nisl sodales dapibus quis eget libero.
-              Suspendisse id hendrerit odio, sit amet rutrum sem. Mauris
-              venenatis nunc sit amet pretium tincidunt. Aliquam sit amet luctus
-              magna, nec mattis dui. Sed lacinia tempor ante. Aenean ut lobortis
-              elit. Etiam vestibulum id orci condimentum maximus.
+              “Following Jesus” is His first command to His true disciples. You
+              cannot be a true Christian if you do not follow Jesus. I want to
+              invite you to follow my blog and together we can “learn to live
+              like Jesus Christ.”
             </p>
             <p>
-              Aliquam a congue lectus. Curabitur iaculis sapien non lobortis
-              finibus. Quisque diam velit, fringilla ut mattis nec, fringilla
-              nec ligula. Aenean in quam at nunc accumsan faucibus. Nullam at
-              libero eget lorem fermentum laoreet vitae sit amet risus. Donec
-              accumsan a elit non tristique. Nullam eget ex sagittis, commodo
-              lectus at, dignissim risus.
-            </p>
-            <p>
-              Praesent volutpat hendrerit interdum. Pellentesque habitant morbi
-              tristique senectus et netus et malesuada fames ac turpis egestas.
-              In luctus tellus lorem, a vestibulum est consequat vitae. Nulla
-              facilisi. Phasellus lacinia dapibus tortor sit amet auctor.
-              Pellentesque lobortis mauris id ligula sodales finibus. Cras
-              imperdiet nibh ac diam tincidunt, nec fermentum sem iaculis.
-              Vivamus blandit augue ligula, nec molestie urna varius porta.
+              My textbook for these teachings will the Bible, the English
+              Standard Bible Version.
             </p>
           </div>
         </div>
