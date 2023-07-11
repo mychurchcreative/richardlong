@@ -6,7 +6,7 @@ import { RichText, richTextZ } from '~/types/richText';
 import { RichTextComponents } from './components';
 
 const RichText = ({ richText }: { richText: RichText; index?: number }) => {
-  const value = React.useMemo(() => richTextZ.parse(richText), [richText]);
+  const value = React.useMemo(() => richText, [richText]);
 
   return (
     <div>

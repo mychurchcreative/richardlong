@@ -2,6 +2,7 @@
 module.exports = {
   ignoredRouteFiles: ['**/.*'],
   tailwind: true,
+  postcss: true,
   serverModuleFormat: 'cjs',
   future: {
     v2_errorBoundary: true,

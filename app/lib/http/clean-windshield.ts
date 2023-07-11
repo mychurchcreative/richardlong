@@ -7,6 +7,7 @@ export async function cleanWindshield(request: Request) {
   const segment = '/error/404';
 
   if (pathname.startsWith(segment) && pathname !== segment) {
+    console.log('cleaning windshield');
     throw redirect(url.pathname.slice(0, segment.length) + url.search);
   }
 }

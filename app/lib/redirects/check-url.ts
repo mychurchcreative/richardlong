@@ -2,7 +2,10 @@ import { redirect } from '@remix-run/node';
 
 import type { Redirect } from '~/types/redirect';
 
-export async function checkUrl(url: string, redirects: Redirect[]) {
+export async function checkUrl(
+  url: string,
+  redirects: Redirect[]
+): Promise<Response | null> {
   for (let r of redirects) {
     let { from, to, splat, permanent } = r;
     let match = splat ? url.startsWith(from) : from === url;
@@ -20,6 +23,7 @@ export async function checkUrl(url: string, redirects: Redirect[]) {
       ) {
         location = '/' + location;
       }
+
       return redirect(location, { status: permanent ? 308 : 307 });
     }
   }

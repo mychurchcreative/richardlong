@@ -77,8 +77,6 @@ export const loader = async ({ request }: LoaderArgs) => {
       validSlug = `/blog/${slug}`;
 
       break;
-    case 'notFoundSettings':
-      validSlug = `/error/404`;
   }
 
   function noSlugFound() {
@@ -92,7 +90,6 @@ export const loader = async ({ request }: LoaderArgs) => {
   const session = await getSession(request.headers.get('Cookie'));
   session.set(`token`, token);
 
-  console.log('validSlug', validSlug);
   return redirect(validSlug, {
     headers: {
       'Set-Cookie': await commitSession(session),

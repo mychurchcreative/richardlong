@@ -13,6 +13,7 @@ import { productionUrl } from '~/sanity/plugins/productionUrl';
 import { projectDetails } from '~/sanity/projectDetails';
 import schema, { singletonTypes } from '~/sanity/schema';
 import post from '~/sanity/schema/documents/post';
+import { tags } from 'sanity-plugin-tags';
 
 const devOnlyPlugins = [visionTool()];
 
@@ -33,6 +34,7 @@ export const config = defineConfig({
     productionUrl({
       types: [post.name],
     }),
+    tags({}),
   ],
   schema,
   document: {

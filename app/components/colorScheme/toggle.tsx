@@ -10,17 +10,14 @@ import { DetailsPopup } from '../detailsPopUp';
 function ColorSchemeToggle() {
   let location = useLocation();
 
-  // This is the same default, hover, focus style as the VersionSelect
-  const className =
-    'border border-transparent transition-colors hover:bg-gray-200 focus:border focus:border-gray-100 dark:focus:border-transparent focus:bg-[var(--color-fill-card-button)] dark:bg-indigo-950 dark:hover:bg-indigo-900 ';
-
   return (
     <DetailsMenu className="relative cursor-pointer">
-      <summary
-        className={`_no-triangle focus:border-200 flex h-[40px] w-[40px] items-center justify-center rounded-full ${className}`}
-      >
-        <TbSun className="text-indigo-500 dark:hidden" size={24} />
-        <TbMoon className="hidden text-indigo-300 dark:inline" />
+      <summary className="flex _no-triangle group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10">
+        <TbSun
+          className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden dark:fill-teal-50 dark:stroke-teal-500 dark:group-hover:fill-teal-50 dark:group-hover:stroke-teal-600"
+          size={24}
+        />
+        <TbMoon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block dark:group-hover:fill-teal-400/50 dark:fill-teal-400/30 dark:stroke-teal-500" />
       </summary>
       <DetailsPopup>
         <Form
@@ -66,7 +63,6 @@ const ColorSchemeButton = React.forwardRef<
     label: string;
   }
 >(({ icon, label, ...props }, forwardedRef) => {
-  // TODO: replace useColorScheme with appropriate theme classes
   let colorScheme = useColorScheme();
   return (
     <button
@@ -76,8 +72,8 @@ const ColorSchemeButton = React.forwardRef<
       className={`flex w-full items-center gap-4 px-4 py-1
         ${
           colorScheme === props.value
-            ? 'text-indigo-500 dark:text-white'
-            : 'rounded-md text-gray-900  transition-colors hover:bg-gray-50 dark:text-indigo-300 dark:hover:bg-indigo-700'
+            ? 'text-teal-500 '
+            : 'rounded-md  transition dark:text-zinc-100 '
         }
       `}
     >

@@ -1,13 +1,18 @@
 import type { LoaderArgs } from '@remix-run/node';
 import { json, redirect } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
 
 import { PageNotFound } from '~/components/pageNotFound';
+import { handleRedirects } from '~/lib/redirects';
+import { getIndexQuery } from '~/sanity/client';
 import { getPreviewToken } from '~/sanity/lib/helpers';
 
 export async function loader({ params, request }: LoaderArgs) {
   const { preview } = await getPreviewToken(request);
-
+  // console.log('request', request);
   const is404 = params['*'] === 'error/404' ? true : false;
+
+  // console.log('is404', is404);
 
   // TODO: This is a hack. I'm not sure how to handle this yet.
   // Right now, we only end up on this route when we are redirected to
@@ -23,15 +28,18 @@ export async function loader({ params, request }: LoaderArgs) {
     throw redirect(`/error/404`, 308);
   }
 
+  const { posts } = await getIndexQuery({});
+
   return json(
     {
       preview,
-      query: null,
-      params: null,
+      posts,
     },
     { status: 404 }
   );
 }
 export default function SplatRoute() {
-  return <PageNotFound />;
+  const { posts } = useLoaderData<typeof loader>();
+
+  return <PageNotFound posts={posts} />;
 }

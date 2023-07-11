@@ -1,4 +1,10 @@
-import { RiEditLine, RiEyeLine, RiListSettingsLine } from 'react-icons/ri';
+import {
+  RiEditLine,
+  RiEyeLine,
+  RiListSettingsLine,
+  RiOrganizationChart,
+  RiUser3Line,
+} from 'react-icons/ri';
 import { VscReferences } from 'react-icons/vsc';
 import type {
   DefaultDocumentNodeResolver,
@@ -13,25 +19,39 @@ import { projectDetails } from '~/sanity/projectDetails';
 
 import { singletonTypes } from '../schema';
 import post from '../schema/documents/post';
-import redirect from '../schema/objects/redirect';
-import redirectSettings from '../schema/singletons/redirectSettings';
+// import redirect from '../schema/objects/redirect';
+import pastorSettings from '../schema/singletons/pastorSettings';
+import redirect from '../schema/documents/redirect';
 import siteSettings from '../schema/singletons/siteSettings';
+import { isAdminUser } from '../lib/helpers';
+import category from '../schema/documents/category';
+import tag from '../schema/documents/tag';
+import parentChild from './parent-child';
 
-export const structure: StructureResolver = (S) => {
+export const structure: StructureResolver = (S, context) => {
+  const { currentUser } = context;
+
+  const isAdmin = isAdminUser(currentUser);
+
   const posts = S.listItem()
-    .title('Posts')
+    .title('Blog')
     .icon(post.icon)
-    .child(S.documentTypeList(post.name).title(post.title + 's'));
+    .child(S.documentTypeList(post.name).title('Blog Posts'));
 
-  const redirects = S.listItem()
-    .title(redirectSettings.title)
-    .icon(redirect.icon)
+  const pastor = S.listItem()
+    .title(pastorSettings.title as string)
+    .icon(RiUser3Line)
     .child(
       S.defaultDocument({
-        schemaType: redirectSettings.name,
-        documentId: redirectSettings.name,
-      })
+        schemaType: pastorSettings.name,
+        documentId: pastorSettings.name,
+      }).title(pastorSettings.title as string)
     );
+
+  const redirects = S.listItem()
+    .title(redirect.title as string)
+    .icon(redirect.icon)
+    .child(S.documentTypeList(redirect.name));
 
   const settings = S.listItem()
     .title('Site Settings')
@@ -43,23 +63,46 @@ export const structure: StructureResolver = (S) => {
       }).title(siteSettings.title as string)
     );
 
+  // const taxonomies = S.listItem()
+  //   .title('Taxonomies')
+  //   .icon(RiOrganizationChart)
+  //   .child(
+  //     S.list()
+  //       .title('Taxonomies')
+  //       .items([
+  //         parentChild('category', S, context.documentStore),
+  //         S.listItem()
+  //           .title('Tags')
+  //           .icon(tag.icon)
+  //           .child(
+  //             S.documentTypeList(tag.name)
+  //               .title(tag.title as string)
+  //               .filter('_type == $type')
+  //               .params({ type: tag.name })
+  //           ),
+  //       ])
+  //   );
+
   // exclude these types from the main list, we'll add them back to the sidebar manually
   const defaultListItems = S.documentTypeListItems().filter(
     (listItem) =>
-      ![...singletonTypes, post.name, 'media.tag'].includes(listItem.getId()!)
+      ![
+        ...singletonTypes,
+        post.name,
+        'media.tag',
+        // tag.name,
+        // category.name,
+        redirect.name,
+      ].includes(listItem.getId()!)
   );
+
+  const nonAdminView = [posts, ...defaultListItems, S.divider(), pastor];
+  const adminVieww = [...nonAdminView, S.divider(), redirects, settings];
 
   return S.list()
     .id('root')
     .title('Content')
-    .items([
-      posts,
-      // S.divider(),
-      ...defaultListItems,
-      S.divider(),
-      redirects,
-      settings,
-    ]);
+    .items(isAdmin ? adminVieww : nonAdminView);
 };
 
 export const defaultDocumentNode: DefaultDocumentNodeResolver = (

@@ -18,21 +18,21 @@ import { checkUrl } from './check-url';
  */
 export async function handleRedirects(request: Request): Promise<void> {
   const data: RedirectsQuery = await getRedirects({});
-
   const redirects: Redirect[] = data.reduce((redirects, next) => {
     let splat = false;
-    let { _key, _type, from, to, permanent } = next;
+    let { _id, _type, from, to, permanent } = next;
 
     // super basic support for splats
     if (from.endsWith('/*')) {
       from = from.slice(0, -2);
       splat = true;
     }
-    redirects.push({ _key, _type, from, to, splat, permanent });
+    redirects.push({ _id, _type, from, to, splat, permanent });
     return redirects;
   }, [] as Redirect[]);
 
   let url = new URL(request.url);
+
   let response = await checkUrl(url.pathname, redirects);
   if (response) throw response;
 }

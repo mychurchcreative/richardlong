@@ -1,5 +1,5 @@
 // https://github.com/sanity-io/sanity/blob/9a00bd2fb01ee4ed8b9b1a6b856fc25d728fd222/packages/@sanity/cli/templates/shopify/utils/validateSlug.ts
-import type { SlugRule } from 'sanity';
+import type { CurrentUser, SlugRule } from 'sanity';
 import slug from 'slug';
 
 import { getSession } from '~/sessions';
@@ -50,4 +50,8 @@ export async function getPreviewToken(request: Request) {
     preview: !!token,
     token: token ? String(token) : null,
   };
+}
+
+export function isAdminUser(user: Omit<CurrentUser, 'role'> | null) {
+  return !!user?.roles.find(({ name }) => name === 'administrator');
 }

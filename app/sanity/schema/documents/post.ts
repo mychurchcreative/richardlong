@@ -3,12 +3,19 @@ import { defineField, defineType } from 'sanity';
 
 import slug from '../objects/slug';
 import title from '../objects/title';
+import { isAdminUser } from '~/sanity/lib/helpers';
 
 export default defineType({
   name: 'post',
   title: 'Post',
   type: 'document',
   icon: RiDraftLine,
+  groups: [
+    {
+      title: 'SEO',
+      name: 'seo',
+    },
+  ],
   preview: {
     select: {
       title: 'title',
@@ -21,7 +28,7 @@ export default defineType({
       title?: string;
       slug?: { current: string };
     }) => {
-      const path = `/${slug.current}`;
+      const path = `blog/${slug.current}`;
 
       return {
         title,
@@ -31,7 +38,7 @@ export default defineType({
   },
   fields: [
     title,
-    slug,
+    slug('blog'),
     defineField({
       name: 'body',
       title: 'Body',
@@ -54,12 +61,11 @@ export default defineType({
         }),
       ],
     }),
-    {
-      name: 'hidden',
-      type: 'boolean',
-      title: 'Hide from search engines?',
-      description: 'Tell search engines not to index this page.',
-      initialValue: false,
-    },
+    defineField({
+      name: 'seo',
+      type: 'seo',
+      group: 'seo',
+      hidden: ({ currentUser }) => !isAdminUser(currentUser),
+    }),
   ],
 });

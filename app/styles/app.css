@@ -1,34 +1,10 @@
-/* clears the ‘X’ from Internet Explorer */
-input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
-input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
-/* clears the ‘X’ from Chrome */
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration { display: none; }
-
-img {
-  display: block;
-  max-width: 100%;
-  width: 100%;
-  height: auto;
-}
-
+/* This is a hack to remove the triangle from the details element */
+/* But it doesn't seem to have any effect in Chrome. Instead, setting the
+   the element's display property to 'flex' seems to remove the triangle
+   in Chrome. ¯\_(ツ)_/¯ */
 ._no-triangle::-webkit-details-marker {
   display: none;
   &::-webkit-details-marker {
     list-style-type: none;
   }
 }
-
-:where(.logo svg) {
-  width: auto;
-  @apply h-8;
-}
-
-/* @layer base {
-  :root {
-    --text-color: #111827;
-    --text-color-dark: #f9fafb;
-  }
-} */

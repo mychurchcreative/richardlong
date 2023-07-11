@@ -7,36 +7,28 @@ import { Image } from '../image';
 export const RichTextComponents: PortableTextComponents = {
   block: {
     h2: ({ children }) => {
-      return (
-        <h2 className="mt-16 text-2xl font-bold tracking-tight text-gray-900 mb-6">
-          {children}
-        </h2>
-      );
+      return <h2>{children}</h2>;
     },
     h3: ({ children }) => {
-      return <h3 className="text-2xl font-bold mb-2">{children}</h3>;
+      return <h3>{children}</h3>;
     },
     normal: ({ children }) => {
-      return <p className="mt-6">{children}</p>;
+      return <p>{children}</p>;
     },
     // add more block-level components here.
   },
 
   list: {
     bullet: ({ children }) => {
-      return <ul className="mt-8 space-y-8 text-gray-600">{children}</ul>;
+      return <ul>{children}</ul>;
     },
     number: ({ children }) => {
-      return <ol className="list-decimal">{children}</ol>;
+      return <ol>{children}</ol>;
     },
   },
   marks: {
     link: ({ value, children }) => {
-      return (
-        <Link to={value.href} className="text-indigo-500 hover:underline">
-          {children}
-        </Link>
-      );
+      return <Link to={value.href}>{children}</Link>;
     },
   },
   types: {
