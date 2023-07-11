@@ -44,8 +44,34 @@ export default defineType({
     }),
     defineField({
       name: 'image',
+      title: 'Header Photo',
       type: 'image',
       description: 'A photo of you to display in the header',
+      options: {
+        hotspot: true,
+      },
+      // TODO: figure out how to validate file size
+      // validation: (Rule) => {
+      //   return Rule.custom((field) => {
+      //     if (!field?.asset) return true;
+
+      //     const { dimensions, format } = decodeAssetUrl(field.asset._ref);
+      //     console.log({ field, dimensions, format });
+
+      //     if (dimensions.width !== 16 || dimensions.height !== 16) {
+      //       return 'Photo must be a 16x16 SVG';
+      //     } else {
+      //       return true;
+      //     }
+      //   });
+      // },
+    }),
+    defineField({
+      name: 'profileImage',
+      title: 'Profile Photo',
+      type: 'image',
+      description:
+        'A photo of you to display on the about page. If you do not upload an image, the header image will be used.',
       options: {
         hotspot: true,
       },
