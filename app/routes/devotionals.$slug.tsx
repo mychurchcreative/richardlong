@@ -65,8 +65,6 @@ export const loader = async ({ params, request }: LoaderArgs) => {
   const { preview } = await getPreviewToken(request);
   const { slug } = params;
 
-  // const segment = `blog/${slug}`;
-
   const devotional = await getDevotionalBySlug({ preview, slug });
   if (!devotional) {
     throw redirect(`/error/404`, 308);
@@ -79,8 +77,9 @@ export const loader = async ({ params, request }: LoaderArgs) => {
   });
 };
 
-export default function BlogDevotionalRoute() {
+export default function DevotionalRoute() {
   const { devotional, query, params } = useLoaderData<typeof loader>();
+
   return (
     <PreviewWrapper
       data={devotional}
