@@ -47,6 +47,16 @@ export default defineType({
       type: 'portableText',
     }),
     defineField({
+      name: 'publishedAt',
+      title: 'Published On',
+      description:
+        'You can set this to a date in the future to schedule a post or set it to a date in the past to backdate a post. Defaults to the current date.',
+      type: 'date',
+      options: {
+        dateFormat: 'MMMM D, YYYY',
+      },
+    }),
+    defineField({
       name: 'featuredImage',
       title: 'Featured Image',
       type: 'image',

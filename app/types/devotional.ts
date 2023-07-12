@@ -12,6 +12,7 @@ export const devotionalZ = sanityDocumentZ.extend({
   body: richTextZ.optional().nullable(),
   featuredImage: sanityImageObjectExtendedZ.nullable().optional(),
   seo: seoZ.optional(),
+  publishedAt: z.string().datetime(),
 });
 
 export const devotionalsZ = z.array(devotionalZ);

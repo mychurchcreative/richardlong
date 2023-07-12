@@ -6,7 +6,7 @@ import { Prose } from '../prose';
 import { RichText } from '../richText';
 
 const Post = ({ post }: { post: Post }) => {
-  const { title, body, featuredImage, _createdAt } = post;
+  const { title, body, featuredImage, publishedAt } = post;
 
   return (
     <Container className="mt-16 lg:mt-32">
@@ -18,11 +18,11 @@ const Post = ({ post }: { post: Post }) => {
                 {title}
               </h1>
               <time
-                dateTime={_createdAt}
+                dateTime={publishedAt}
                 className="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500"
               >
                 <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
-                <span className="ml-3">{formatDate(_createdAt)}</span>
+                <span className="ml-3">{formatDate(publishedAt)}</span>
               </time>
             </header>
             <Prose className="mt-8">

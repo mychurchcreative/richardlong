@@ -77,7 +77,7 @@ export const loader = async ({ params, request }: LoaderArgs) => {
   return json({
     post,
     query: preview ? postBySlugQuery : null,
-    params: preview ? { slug } : null,
+    params: preview ? { slug, now: new Date().toISOString() } : null,
   });
 };
 

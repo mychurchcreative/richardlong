@@ -24,7 +24,7 @@ export const meta: V2_MetaFunction<typeof loader> = ({ data, params }) => {
   } else if (devotional.title) {
     title = [devotional.title, ...title];
   } else {
-    title = ['Blog', ...title];
+    title = ['Devotional', ...title];
   }
 
   title = title.filter(Boolean).join(' | ');
@@ -66,14 +66,15 @@ export const loader = async ({ params, request }: LoaderArgs) => {
   const { slug } = params;
 
   const devotional = await getDevotionalBySlug({ preview, slug });
-  if (!devotional) {
+
+  if (!devotional._id) {
     throw redirect(`/error/404`, 308);
   }
 
   return json({
     devotional,
     query: preview ? devotionalBySlugQuery : null,
-    params: preview ? { slug } : null,
+    params: preview ? { slug, now: new Date().toISOString() } : null,
   });
 };
 

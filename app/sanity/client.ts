@@ -106,12 +106,12 @@ export async function getDevotionalBySlug({
 }: ClientProps & {
   slug?: string;
 }): Promise<Devotional> {
-  // get page id and page builder types
   if (client) {
     const data: Devotional = await getClient(preview).fetch(
       devotionalBySlugQuery,
       {
         slug,
+        now: new Date().toISOString(),
       }
     );
     if (data) {
@@ -129,7 +129,12 @@ export async function getDevotionals({
   preview = false,
 }: ClientProps): Promise<Devotional[]> {
   if (client) {
-    const data: Devotional[] = await getClient(preview).fetch(devotionalsQuery);
+    const data: Devotional[] = await getClient(preview).fetch(
+      devotionalsQuery,
+      {
+        now: new Date().toISOString(),
+      }
+    );
     return data;
   }
 

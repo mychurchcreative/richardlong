@@ -34,11 +34,11 @@ function Article({ article }: { article: Devotional }) {
         <Card.Title href={`${article.slug}`}>{article.title}</Card.Title>
         <Card.Eyebrow
           as="time"
-          dateTime={article._updatedAt}
+          dateTime={article.publishedAt}
           className="md:hidden"
           decorate
         >
-          {formatDate(article._updatedAt)}
+          {formatDate(article.publishedAt)}
         </Card.Eyebrow>
         {article.seo?.description ? (
           <Card.Description>{article.seo?.description}</Card.Description>
@@ -47,10 +47,10 @@ function Article({ article }: { article: Devotional }) {
       </Card>
       <Card.Eyebrow
         as="time"
-        dateTime={article._updatedAt}
+        dateTime={article.publishedAt}
         className="mt-1 hidden md:block"
       >
-        {formatDate(article._updatedAt)}
+        {formatDate(article.publishedAt)}
       </Card.Eyebrow>
     </article>
   );

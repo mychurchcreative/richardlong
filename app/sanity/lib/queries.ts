@@ -56,6 +56,7 @@ const postFields = groq`
   _type,
   _createdAt,
   _updatedAt,
+  publishedAt,
   title,
   ${slugProjection},
   body[]{
@@ -99,11 +100,12 @@ export const redirectsQuery = groq`
 //   *[_type == "redirectSettings"][0]._id
 // `;
 export const postsQuery = groq`
-  *[_type == "post"] {
+  *[_type == "post"] | order(publishedAt desc) {
     _id,
     _type,
     _createdAt,
     _updatedAt,
+    publishedAt,
     title,
     ${slugProjection},
     seo
@@ -117,11 +119,12 @@ export const postBySlugQuery = groq`
 `;
 
 export const devotionalsQuery = groq`
-  *[_type == "devotional"] {
+  *[_type == "devotional" && publishedAt <=$now ] | order(publishedAt desc) {
     _id,
     _type,
     _createdAt,
     _updatedAt,
+    publishedAt,
     title,
     ${slugProjection},
     seo
@@ -129,11 +132,12 @@ export const devotionalsQuery = groq`
   }
 `;
 export const devotionalBySlugQuery = groq`
-*[_type == "devotional" && slug.current == $slug][0] {
+*[_type == "devotional" && publishedAt <=$now && slug.current == $slug][0] {
   _id,
   _type,
   _createdAt,
   _updatedAt,
+  publishedAt,
   title,
   ${slugProjection},
   body[]{

@@ -76,10 +76,10 @@ export default function Index() {
                   </Card.Title>
                   <Card.Eyebrow
                     as="time"
-                    dateTime={article._createdAt}
+                    dateTime={article.publishedAt}
                     decorate
                   >
-                    {formatDate(article._createdAt)}
+                    {formatDate(article.publishedAt)}
                   </Card.Eyebrow>
                   {/* TODO: add meta description or summary field */}
                   {article.seo?.description ? (
@@ -91,7 +91,9 @@ export default function Index() {
                 </Card>
               ))
             ) : (
-              <p>Nothing yet.</p>
+              <Prose>
+                <p>Nothing yet.</p>
+              </Prose>
             )}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
@@ -121,7 +123,9 @@ export default function Index() {
                 </Card>
               ))
             ) : (
-              <p>Nothing yet.</p>
+              <Prose>
+                <p>Nothing yet.</p>
+              </Prose>
             )}
             {/* <Newsletter />
             <Resume /> */}

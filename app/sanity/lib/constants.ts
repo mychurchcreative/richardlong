@@ -2,7 +2,7 @@ import devotional from '../schema/documents/devotional';
 import post from '../schema/documents/post';
 
 // References to include in 'internal' links
-export const PAGE_REFERENCES = [{ type: 'post' }];
+export const PAGE_REFERENCES = [{ type: post.name }, { type: devotional.name }];
 
 // export const BLOCK_STYLES = [
 //   { title: 'Normal', value: 'normal' },
