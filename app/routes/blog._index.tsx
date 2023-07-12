@@ -15,6 +15,7 @@ import { Card } from '../components/card';
 import { SimpleLayout } from '../components/layout/simple';
 import { formatDate } from '../lib/utils/helpers';
 import { useRootLoaderData } from '~/lib/helpers';
+import { Prose } from '~/components/prose';
 
 export const meta: V2_MetaFunction = ({ matches }) => {
   const { siteTitle } = useRootLoaderData();
@@ -86,7 +87,9 @@ export default function BlogIndex() {
                 <Article key={article.slug} article={article} />
               ))
             ) : (
-              <p>No posts yet.</p>
+              <Prose>
+                <p>Nothing yet.</p>
+              </Prose>
             )}
           </div>
         </div>

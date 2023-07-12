@@ -9,6 +9,7 @@ import { SimpleLayout } from '../components/layout/simple';
 import { formatDate } from '../lib/utils/helpers';
 import { useRootLoaderData } from '~/lib/helpers';
 import { Sermon } from '~/types/sermon';
+import { Prose } from '~/components/prose';
 
 export const meta: V2_MetaFunction = ({ matches }) => {
   const { siteTitle } = useRootLoaderData();
@@ -84,7 +85,9 @@ export default function SermonIndex() {
                 <Sermon key={sermon._id} sermon={sermon} />
               ))
             ) : (
-              <p>No sermons yet.</p>
+              <Prose>
+                <p>Nothing yet.</p>
+              </Prose>
             )}
           </div>
         </div>

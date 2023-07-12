@@ -8,6 +8,7 @@ import { formatDate } from '../lib/utils/helpers';
 import { useRootLoaderData } from '~/lib/helpers';
 import { getDevotionals } from '~/sanity/client';
 import { Devotional } from '~/types/devotional';
+import { Prose } from '~/components/prose';
 
 export const meta: V2_MetaFunction = ({ matches }) => {
   const { siteTitle } = useRootLoaderData();
@@ -71,7 +72,9 @@ export default function DevotionalsIndex() {
                 <Article key={article.slug} article={article} />
               ))
             ) : (
-              <p>No devotionals yet.</p>
+              <Prose>
+                <p>Nothing yet.</p>
+              </Prose>
             )}
           </div>
         </div>
