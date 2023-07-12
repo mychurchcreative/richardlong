@@ -16,6 +16,7 @@ import { productionUrl } from '~/sanity/plugins/productionUrl';
 import { projectDetails } from '~/sanity/projectDetails';
 import schema, { singletonTypes } from '~/sanity/schema';
 import { tags } from 'sanity-plugin-tags';
+import { titleCase } from '~/lib/utils/helpers';
 
 const devOnlyPlugins = [visionTool()];
 
@@ -25,7 +26,7 @@ const singletonActions = new Set(['publish', 'discardChanges', 'restore']);
 export const config = defineConfig({
   ...projectDetails(),
   name: 'production',
-  title: 'Production',
+  title: titleCase(projectDetails().dataset),
   // TODO: filter out settings and redirects for client
   plugins: [
     deskTool({ structure, defaultDocumentNode }),
