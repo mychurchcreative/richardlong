@@ -21,28 +21,34 @@ export default function PageNotFound({ posts }: { posts?: Post[] }) {
         <Prose>
           <h2 className="text-teal-500 ">Latest Articles</h2>
         </Prose>
-        <ul className="-mt-6 divide-y divide-gray-900/10 border-b border-gray-900/10 dark:divide-teal-500/50 dark:border-teal-500/50">
-          {posts?.map((page, index) => (
-            <li key={index} className="relative flex gap-x-6 py-6">
-              <div className="flex-auto">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900 dark:text-white md:text-base">
-                  <Link to={page.slug ?? '#'} prefetch="intent">
-                    <span className="absolute inset-0" aria-hidden="true" />
-                    {page.title}
-                  </Link>
-                </h3>
-                {/* <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-teal-300">
+        <ul className="pb-6 divide-y divide-gray-900/10 border-b border-gray-900/10 dark:divide-teal-500/50 dark:border-teal-500/50 space-y-6">
+          {posts?.length ? (
+            posts?.map((page, index) => (
+              <li key={index} className="relative flex gap-x-6">
+                <div className="flex-auto">
+                  <h3 className="text-sm font-semibold leading-6 text-gray-900 dark:text-white md:text-base">
+                    <Link to={page.slug ?? '#'} prefetch="intent">
+                      <span className="absolute inset-0" aria-hidden="true" />
+                      {page.title}
+                    </Link>
+                  </h3>
+                  {/* <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-teal-300">
                   {page.description}
                 </p> */}
-              </div>
-              <div className="flex-none self-center">
-                <MdChevronRight
-                  className="h-5 w-5 text-gray-400 dark:text-white"
-                  aria-hidden="true"
-                />
-              </div>
+                </div>
+                <div className="flex-none self-center">
+                  <MdChevronRight
+                    className="h-5 w-5 text-gray-400 dark:text-white"
+                    aria-hidden="true"
+                  />
+                </div>
+              </li>
+            ))
+          ) : (
+            <li className="text-sm leading-6 text-gray-900 dark:text-white md:text-base">
+              Nothing yet.
             </li>
-          ))}
+          )}
         </ul>
         <div className="mt-10 flex justify-center">
           <Link
