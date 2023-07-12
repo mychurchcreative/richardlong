@@ -7,6 +7,7 @@ import { useRootLoaderData } from '~/lib/helpers';
 import { loader } from '~/root';
 import { FaFacebookF } from 'react-icons/fa';
 import { RiFacebookFill } from 'react-icons/ri';
+import { Prose } from '~/components/prose';
 
 export const meta: V2_MetaFunction<typeof loader> = ({ params, data }) => {
   const { siteTitle } = useRootLoaderData();
@@ -66,23 +67,89 @@ const AboutRoute = () => {
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
             Richard H. J. Long
           </h1>
-          <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
+          <Prose>
             <p>
-              Hello, I am Richard H. J. Long from Johnson City, TN. I am a
-              disciple of Jesus Christ, the Son of God. I actually became a true
-              disciple of Jesus on March 31, 2005.
+              I was born and raised in a small town called Sikeston, Missouri.
+              My mother and dad had twelve children; six boys and six girls.
+              After high school I served in the U. S. Marine Corps from 1966-72.
+              I served in Vietnam in 1967-1968. After my time in the Marines, I
+              attended and graduated from college and seminary. From March 1972
+              - August 1991 I served in ministry as a pastor and associate
+              pastor. During those years I played the role that I was in,
+              however my spiritual life was a failure. I lived with spiritual
+              doubt and sin controlling my life; I was a hypocrite. My married
+              life was a failure and I ended up divorcing my wife.
             </p>
             <p>
-              “Following Jesus” is His first command to His true disciples. You
-              cannot be a true Christian if you do not follow Jesus. I want to
-              invite you to follow my blog and together we can “learn to live
-              like Jesus Christ.”
+              My life was a roller coaster from December 1993 until March 31,
+              2005. I had no peace with God. I lived in sin and with doubt being
+              a Christian for most of these years. Aftering hearing a sermon
+              from a SBC Evangelist about being a lost preacher, on that day I
+              realized that that was my major problem; I was not really a true
+              Christian. I was a lost preacher. On that day the LORD Jesus
+              Christ brought me to a great conviction of sin that I had never
+              been born again. The LORD Jesus Christ changed my life forever
+              that day. He called me to repentance and salvation. For the first
+              time in my life I lived at peace with God and never another day of
+              doubt gripped my life.{' '}
+            </p>
+            <h3>A little bit about me.... </h3>
+            <p>
+              After I was born again on March 31, 2005 I became a true disciple
+              of Jesus Christ and longed to know Him more and more every day of
+              my life. For the first time in my life the Word of God came alive
+              to me. After that day, I began a hunger for the Word of God every
+              day.
             </p>
             <p>
-              My textbook for these teachings will the Bible, the English
-              Standard Bible Version.
+              As a young boy while attending a mission SBC church I learned that
+              God has a plan for every Christian's life. My curiosity thought
+              maybe that I could be a pastor after I had seen my pastor's
+              ordination certificate hanging on his office wall. However, not
+              coming from a devoted Christian home, I did not know if I could
+              ever serve God. I was very religious from the day that I was
+              baptized as a 12 year old, but for most of my life until 2005, I
+              lived like a true sinner, when not with Christian friends. I was
+              good at learning how to act like a Christian and a pastor though I
+              was not born again.
             </p>
-          </div>
+            <p>
+              I worked in real estate as a broker and regional manager after
+              becoming a born again disciple of Jesus Christ. After ten years of
+              marriage to my second wife, she was not happy with my new
+              "committed Christian Life." Four years after being born again, she
+              had an affair with her boss and divorced me after 15 years of
+              marriage. I spent three years trying to restore our marriage. But
+              she said no.
+            </p>
+            <p>
+              I decided to return to East Tennessee in March 2011. I have a
+              daughter and her family who live in Johnson City. I needed a home
+              where I could emotionally and mentally heal. This became the 'balm
+              in Gilead' for me. There is nothing like having a loving family to
+              support you.
+            </p>
+            <p>
+              After I returned to Johnson City, Pastor Pete Tackett heard that I
+              was in town and we had coffee together and I shared with him my
+              spiritual journey. He asked me to come to Antioch Church, where I
+              once was the senior pastor, and share my testimony. I did this in
+              June 2011 on Father's Day. This became a very important day in the
+              healing of my soul from past failures as a lost pastor.
+            </p>
+            <p>
+              Over a year later, Pastor Tackett, asked me if I would consider
+              becoming a part of his ministry team. After three months of
+              praying for God's will I wondered if God could use me in ministry.
+              After all, I had been divorced two times. Then I remembered Jesus
+              Christ saved me and forgave me of all my sins. Since January 2013,
+              the Antioch Church and God have allowed me to serve in the gospel
+              ministry as an Associate Pastor with preaching and teaching
+              responsibilities, as well as overseeing the prayer and pastoral
+              care ministry at Antioch Church. I retired from ministry at
+              Antioch Church on June 4, 2023.
+            </p>
+          </Prose>
         </div>
         <div className="lg:pl-20">
           <ul className="space-y-2">
@@ -111,7 +178,7 @@ const AboutRoute = () => {
               icon={MailIcon}
               className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
             >
-              {email}
+              Get in Touch
             </SocialLink>
           </ul>
         </div>
