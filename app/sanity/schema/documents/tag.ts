@@ -1,5 +1,6 @@
 import { RiPriceTag3Line } from 'react-icons/ri';
 import { defineField, defineType } from 'sanity';
+
 import slug from '../objects/slug';
 
 export default defineType({

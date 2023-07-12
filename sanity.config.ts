@@ -4,7 +4,9 @@ import { deskTool } from 'sanity/desk';
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash';
 import { media } from 'sanity-plugin-media';
 import { noteField } from 'sanity-plugin-note-field';
+import { tags } from 'sanity-plugin-tags';
 
+import { titleCase } from '~/lib/utils/helpers';
 import { PublishPageWithSlugAction } from '~/sanity/actions/PublishPageWithSlugAction';
 import StudioNavBar from '~/sanity/components/studio/StudioNavBar';
 import { defaultDocumentNode, structure } from '~/sanity/desk/structure';
@@ -15,8 +17,6 @@ import {
 import { productionUrl } from '~/sanity/plugins/productionUrl';
 import { projectDetails } from '~/sanity/projectDetails';
 import schema, { singletonTypes } from '~/sanity/schema';
-import { tags } from 'sanity-plugin-tags';
-import { titleCase } from '~/lib/utils/helpers';
 
 const devOnlyPlugins = [visionTool()];
 

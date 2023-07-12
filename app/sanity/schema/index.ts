@@ -1,25 +1,21 @@
 import type { SchemaTypeDefinition, TemplateResolver } from 'sanity';
 
+import { isAdminUser } from '../lib/helpers';
+import devotional from './documents/devotional';
 import post from './documents/post';
+import redirect from './documents/redirect';
+import sermon from './documents/sermon';
 import link from './objects/link';
 import linkExternal from './objects/linkExternal';
 import linkInternal from './objects/linkInternal';
 import portableText from './objects/portableText';
-import redirect from './documents/redirect';
-import pastorSettings from './singletons/pastorSettings';
-import redirectSettings from './singletons/redirectSettings';
-import siteSettings from './singletons/siteSettings';
-import sermon from './documents/sermon';
 import seo from './objects/seo';
-import category from './documents/category';
-import tag from './documents/tag';
-import { isAdminUser } from '../lib/helpers';
-import devotional from './documents/devotional';
+import pastorSettings from './singletons/pastorSettings';
+import siteSettings from './singletons/siteSettings';
 
 const singletonTypes = new Set([
   'media.tag',
   siteSettings.name,
-  // redirectSettings.name,
   pastorSettings.name,
 ]);
 const schema: {
@@ -27,7 +23,6 @@ const schema: {
   templates?: TemplateResolver;
 } = {
   types: [
-    // category,
     devotional,
     portableText,
     siteSettings,
@@ -39,23 +34,9 @@ const schema: {
     linkInternal,
     linkExternal,
     redirect,
-    // redirectSettings,
-    // tag,
   ],
   // Filter out singleton types from the global “New document” menu options
   templates: (prev, context) => {
-    // Add this 'category child' template
-    const categoryChild = {
-      id: 'category-child',
-      title: 'Category: Child',
-      schemaType: 'category',
-      parameters: [{ name: `parentId`, title: `Parent ID`, type: `string` }],
-      // This value will be passed-in from desk structure
-      value: ({ parentId }: { parentId: string }) => ({
-        parent: { _type: 'reference', _ref: parentId },
-      }),
-    };
-
     const { currentUser } = context;
 
     const excludedTypes = [...singletonTypes];
@@ -67,7 +48,6 @@ const schema: {
 
     return [
       ...prev.filter(({ schemaType }) => !excludedTypes.includes(schemaType)),
-      categoryChild,
     ];
   },
 };

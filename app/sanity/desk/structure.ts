@@ -2,7 +2,6 @@ import {
   RiEditLine,
   RiEyeLine,
   RiListSettingsLine,
-  RiOrganizationChart,
   RiUser3Line,
 } from 'react-icons/ri';
 import { VscReferences } from 'react-icons/vsc';
@@ -17,17 +16,13 @@ import type { SanityDocumentWithSlug } from '~/sanity/desk/resolvePreviewUrl';
 import { resolvePreviewUrl } from '~/sanity/desk/resolvePreviewUrl';
 import { projectDetails } from '~/sanity/projectDetails';
 
-import { singletonTypes } from '../schema';
-import post from '../schema/documents/post';
-// import redirect from '../schema/objects/redirect';
-import pastorSettings from '../schema/singletons/pastorSettings';
-import redirect from '../schema/documents/redirect';
-import siteSettings from '../schema/singletons/siteSettings';
 import { isAdminUser } from '../lib/helpers';
-import category from '../schema/documents/category';
-import tag from '../schema/documents/tag';
-import parentChild from './parent-child';
+import { singletonTypes } from '../schema';
 import devotional from '../schema/documents/devotional';
+import post from '../schema/documents/post';
+import redirect from '../schema/documents/redirect';
+import pastorSettings from '../schema/singletons/pastorSettings';
+import siteSettings from '../schema/singletons/siteSettings';
 
 export const structure: StructureResolver = (S, context) => {
   const { currentUser } = context;
@@ -64,37 +59,11 @@ export const structure: StructureResolver = (S, context) => {
       }).title(siteSettings.title as string)
     );
 
-  // const taxonomies = S.listItem()
-  //   .title('Taxonomies')
-  //   .icon(RiOrganizationChart)
-  //   .child(
-  //     S.list()
-  //       .title('Taxonomies')
-  //       .items([
-  //         parentChild('category', S, context.documentStore),
-  //         S.listItem()
-  //           .title('Tags')
-  //           .icon(tag.icon)
-  //           .child(
-  //             S.documentTypeList(tag.name)
-  //               .title(tag.title as string)
-  //               .filter('_type == $type')
-  //               .params({ type: tag.name })
-  //           ),
-  //       ])
-  //   );
-
-  // exclude these types from the main list, we'll add them back to the sidebar manually
   const defaultListItems = S.documentTypeListItems().filter(
     (listItem) =>
-      ![
-        ...singletonTypes,
-        post.name,
-        'media.tag',
-        // tag.name,
-        // category.name,
-        redirect.name,
-      ].includes(listItem.getId()!)
+      ![...singletonTypes, post.name, 'media.tag', redirect.name].includes(
+        listItem.getId()!
+      )
   );
 
   const nonAdminView = [posts, ...defaultListItems, S.divider(), pastor];

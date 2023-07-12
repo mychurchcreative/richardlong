@@ -1,12 +1,9 @@
-import {
-  RiBubbleChartLine,
-  RiFilter3Line,
-  RiListUnordered,
-} from 'react-icons/ri';
+import { RiListUnordered } from 'react-icons/ri';
 import { defineField, defineType } from 'sanity';
-import slug from '../objects/slug';
-import seo from '../objects/seo';
+
 import { isAdminUser } from '~/sanity/lib/helpers';
+
+import slug from '../objects/slug';
 
 export default defineType({
   name: 'category',

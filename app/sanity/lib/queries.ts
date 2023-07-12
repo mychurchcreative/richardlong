@@ -59,6 +59,7 @@ const postFields = groq`
   publishedAt,
   title,
   ${slugProjection},
+  excerpt,
   body[]{
     ${richTextFragment}
   },
@@ -108,6 +109,7 @@ export const postsQuery = groq`
     publishedAt,
     title,
     ${slugProjection},
+    excerpt,
     seo
     // "body": pt::text(body)
   }
@@ -127,6 +129,7 @@ export const devotionalsQuery = groq`
     publishedAt,
     title,
     ${slugProjection},
+    excerpt,
     seo
     // "body": pt::text(body)
   }
@@ -140,6 +143,7 @@ export const devotionalBySlugQuery = groq`
   publishedAt,
   title,
   ${slugProjection},
+  excerpt,
   body[]{
     ${richTextFragment}
   },
@@ -155,8 +159,7 @@ export const sermonsQuery = groq`
     _id,
     title,
     date,
-    keyText,
-    videoId,
+    videoUrl,
   }
 `;
 
@@ -172,8 +175,7 @@ export const indexQuery = groq`
       _id,
       title,
       date,
-      keyText,
-      videoId,
+      videoUrl,
       poster {
         ${imageFieldsFragment}
       }

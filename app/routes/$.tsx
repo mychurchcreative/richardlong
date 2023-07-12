@@ -3,16 +3,12 @@ import { json, redirect } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 
 import { PageNotFound } from '~/components/pageNotFound';
-import { handleRedirects } from '~/lib/redirects';
 import { getIndexQuery } from '~/sanity/client';
 import { getPreviewToken } from '~/sanity/lib/helpers';
 
 export async function loader({ params, request }: LoaderArgs) {
   const { preview } = await getPreviewToken(request);
-  // console.log('request', request);
   const is404 = params['*'] === 'error/404' ? true : false;
-
-  // console.log('is404', is404);
 
   // TODO: This is a hack. I'm not sure how to handle this yet.
   // Right now, we only end up on this route when we are redirected to

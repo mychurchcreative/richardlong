@@ -1,9 +1,10 @@
+import { RiFacebookFill } from 'react-icons/ri';
+
 import { useRootLoaderData } from '~/lib/helpers';
 
 import { Container } from '../container';
-import { InstagramIcon, LinkedInIcon, TwitterIcon } from '../social';
+import { TwitterIcon } from '../social';
 import { SocialLink } from '../social/socialLink';
-import { RiFacebookFill } from 'react-icons/ri';
 
 export function Footer() {
   const { siteTitle } = useRootLoaderData();

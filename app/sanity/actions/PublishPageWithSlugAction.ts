@@ -1,17 +1,17 @@
 import { useToast } from '@sanity/ui';
+import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
 import {
-  useDocumentOperation,
   type DocumentActionComponent,
   type DocumentActionProps,
   type DocumentActionsContext,
+  useDocumentOperation,
 } from 'sanity';
 
 import { apiVersion } from '~/sanity/projectDetails';
 import type { RedirectsQuery } from '~/types/redirect';
 
 import { redirectsQuery } from '../lib/queries';
-import dayjs from 'dayjs';
-import { useEffect, useState } from 'react';
 
 // TODO: need to add a delete action in a separate file to remove the redirect when the page is deleted or unpublished
 // or discuss with the team if we want to do something else. Either way, it's going to return a 404 when trying to view the page.
@@ -36,7 +36,7 @@ export function PublishPageWithSlugAction(
       if (isPublishing && !draft) {
         setIsPublishing(false);
       }
-    }, [draft]);
+    }, [isPublishing, draft]);
 
     let prefix = '';
     switch (type) {

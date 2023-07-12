@@ -7,6 +7,7 @@ import { json } from '@remix-run/node';
 import type { RouteMatch } from '@remix-run/react';
 import { useLoaderData } from '@remix-run/react';
 
+import { Prose } from '~/components/prose';
 import type { loader as rootLoader } from '~/root';
 import { getPosts } from '~/sanity/client';
 import type { Post } from '~/types/post';
@@ -14,11 +15,13 @@ import type { Post } from '~/types/post';
 import { Card } from '../components/card';
 import { SimpleLayout } from '../components/layout/simple';
 import { formatDate } from '../lib/utils/helpers';
-import { useRootLoaderData } from '~/lib/helpers';
-import { Prose } from '~/components/prose';
 
 export const meta: V2_MetaFunction = ({ matches }) => {
-  const { siteTitle } = useRootLoaderData();
+  const rootData = matches.find((match: RouteMatch) => match.id === `root`) as
+    | { data: SerializeFrom<typeof rootLoader> }
+    | undefined;
+
+  const siteTitle = rootData ? rootData.data.siteTitle : '';
 
   const title = ['Blog', siteTitle].filter(Boolean).join(' | ');
 
@@ -37,7 +40,6 @@ export const loader = async ({ request }: LoaderArgs) => {
   // const { preview } = await getPreviewToken(request);
   const posts = await getPosts({});
 
-  // console.log(posts);
   return json({
     posts,
   });
@@ -56,8 +58,8 @@ function Article({ article }: { article: Post }) {
         >
           {formatDate(article._updatedAt)}
         </Card.Eyebrow>
-        {article.seo?.description ? (
-          <Card.Description>{article.seo?.description}</Card.Description>
+        {article.excerpt ? (
+          <Card.Description>{article.excerpt}</Card.Description>
         ) : null}
         <Card.Cta>Read article</Card.Cta>
       </Card>

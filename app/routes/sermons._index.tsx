@@ -1,31 +1,32 @@
-import type { LoaderArgs, V2_MetaFunction } from '@remix-run/node';
+import type {
+  LoaderArgs,
+  SerializeFrom,
+  V2_MetaFunction,
+} from '@remix-run/node';
 import { json } from '@remix-run/node';
+import type { RouteMatch } from '@remix-run/react';
 import { useLoaderData } from '@remix-run/react';
 
+import { Prose } from '~/components/prose';
+import type { loader as rootLoader } from '~/root';
 import { getSermons } from '~/sanity/client';
+import { Sermon } from '~/types/sermon';
 
 import { Card } from '../components/card';
 import { SimpleLayout } from '../components/layout/simple';
 import { formatDate } from '../lib/utils/helpers';
-import { useRootLoaderData } from '~/lib/helpers';
-import { Sermon } from '~/types/sermon';
-import { Prose } from '~/components/prose';
 
 export const meta: V2_MetaFunction = ({ matches }) => {
-  const { siteTitle } = useRootLoaderData();
+  const rootData = matches.find((match: RouteMatch) => match.id === `root`) as
+    | { data: SerializeFrom<typeof rootLoader> }
+    | undefined;
 
-  const title = ['Blog', siteTitle].filter(Boolean).join(' | ');
+  const siteTitle = rootData ? rootData.data.siteTitle : '';
+
+  const title = ['Sermons', siteTitle].filter(Boolean).join(' | ');
 
   return [{ title }];
 };
-
-// {/* <Head>
-//         <title>Articles - Spencer Sharp</title>
-//         <meta
-//           name="description"
-//           content="All of my long-form thoughts on programming, leadership, product design, and more, collected in chronological order."
-//         />
-//       </Head> */}
 
 export const loader = async ({ request }: LoaderArgs) => {
   const sermons = await getSermons({});
@@ -39,10 +40,7 @@ function Sermon({ sermon }: { sermon: Sermon }) {
   return (
     <article className="md:grid md:grid-cols-4 md:items-baseline">
       <Card className="md:col-span-3">
-        <Card.Title
-          href={`https://www.youtube-nocookie.com/embed/${sermon.videoId}`}
-          openInNewTab
-        >
+        <Card.Title href={sermon.videoUrl} openInNewTab>
           {sermon.title}
         </Card.Title>
         {sermon.date ? (

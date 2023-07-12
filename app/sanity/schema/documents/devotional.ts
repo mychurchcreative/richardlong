@@ -1,11 +1,10 @@
-import { BiBible } from 'react-icons/bi';
-
+import { RiBookOpenLine } from 'react-icons/ri';
 import { defineField, defineType } from 'sanity';
+
+import { isAdminUser } from '~/sanity/lib/helpers';
 
 import slug from '../objects/slug';
 import title from '../objects/title';
-import { isAdminUser } from '~/sanity/lib/helpers';
-import { RiBookOpenLine } from 'react-icons/ri';
 
 export default defineType({
   name: 'devotional',
@@ -41,6 +40,14 @@ export default defineType({
   fields: [
     title,
     slug('devotionals'),
+    defineField({
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'text',
+      rows: 3,
+      description:
+        'This is used for the meta description as well as the preview text on the devotionals page.',
+    }),
     defineField({
       name: 'body',
       title: 'Body',

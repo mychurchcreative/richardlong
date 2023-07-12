@@ -1,10 +1,11 @@
 // ./src/desk-structure/parentChild.js
 
-import { DocumentStore } from 'sanity';
-import { SanityDocument } from '@sanity/client';
-import { StructureBuilder } from 'sanity/desk';
-import { map } from 'rxjs/operators';
+import type { SanityDocument } from '@sanity/client';
 import { RiListUnordered } from 'react-icons/ri';
+import { map } from 'rxjs/operators';
+import type { DocumentStore } from 'sanity';
+import type { StructureBuilder } from 'sanity/desk';
+
 import { apiVersion } from '../projectDetails';
 
 export default function parentChild(

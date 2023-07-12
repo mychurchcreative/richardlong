@@ -1,17 +1,31 @@
-import type { LoaderArgs, V2_MetaFunction } from '@remix-run/node';
+import type {
+  LoaderArgs,
+  SerializeFrom,
+  V2_MetaFunction,
+} from '@remix-run/node';
 import { json, redirect } from '@remix-run/node';
+import type { RouteMatch } from '@remix-run/react';
 import { useLoaderData, useRouteError } from '@remix-run/react';
 
 import { Container } from '~/components/container';
 import { Devotional } from '~/components/devotional';
 import { PreviewWrapper } from '~/components/preview/wrapper';
-import { useRootLoaderData } from '~/lib/helpers';
+import type { loader as rootLoader } from '~/root';
 import { getDevotionalBySlug } from '~/sanity/client';
 import { getPreviewToken } from '~/sanity/lib/helpers';
 import { devotionalBySlugQuery } from '~/sanity/lib/queries';
 
-export const meta: V2_MetaFunction<typeof loader> = ({ data, params }) => {
-  const { siteTitle, siteUrl } = useRootLoaderData();
+export const meta: V2_MetaFunction<typeof loader> = ({
+  data,
+  params,
+  matches,
+}) => {
+  const rootData = matches.find((match: RouteMatch) => match.id === `root`) as
+    | { data: SerializeFrom<typeof rootLoader> }
+    | undefined;
+
+  const siteTitle = rootData ? rootData.data.siteTitle : '';
+  const siteUrl = rootData ? rootData.data.siteUrl : '';
 
   const { devotional } = data as { devotional: Devotional };
 

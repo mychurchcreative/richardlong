@@ -1,5 +1,5 @@
-import { defineField, defineType } from 'sanity';
 import { RiMicLine } from 'react-icons/ri';
+import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'sermon',
@@ -36,14 +36,8 @@ export default defineType({
       type: 'date',
     }),
     defineField({
-      name: 'keyText',
-      title: 'Key Text',
-      type: 'string',
-    }),
-    defineField({
-      name: 'videoId',
-      title: 'YouTube Video ID',
-      description: 'It should look something like "fJeNqnekQJQ"',
+      name: 'videoUrl',
+      title: 'Video URL',
       type: 'string',
     }),
   ],

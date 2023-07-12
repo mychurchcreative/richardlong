@@ -89,9 +89,9 @@ export const loader = async ({ request }: LoaderArgs) => {
   function noSlugFound() {
     return new Response('No slug in preview URL', { status: 401 });
   }
-  function invalidSlug() {
-    return new Response('Invalid slug', { status: 401 });
-  }
+  // function invalidSlug() {
+  //   return new Response('Invalid slug', { status: 401 });
+  // }
 
   // Write viewer token to session so that every route can authenticate by it
   const session = await getSession(request.headers.get('Cookie'));

@@ -1,11 +1,13 @@
 import { createClient } from '@sanity/client';
 
 import { projectDetails } from '~/sanity/projectDetails';
+import type { Devotional } from '~/types/devotional';
 import type { Pastor } from '~/types/pastor';
 import type { Post } from '~/types/post';
 // import { postZ } from '~/types/post';
 import type { RedirectsQuery } from '~/types/redirect';
 import { redirectsZ } from '~/types/redirect';
+import type { Sermon } from '~/types/sermon';
 import type { SiteSettings } from '~/types/siteSettings';
 
 import {
@@ -18,8 +20,6 @@ import {
   sermonsQuery,
   siteSettingsQuery,
 } from './lib/queries';
-import { Sermon } from '~/types/sermon';
-import { Devotional } from '~/types/devotional';
 
 type ClientProps = {
   preview?: boolean;

@@ -1,6 +1,8 @@
-import { SanityImageObjectExtended } from '~/types/image';
-import { Image } from '../image';
 import { Link } from '@remix-run/react';
+
+import type { SanityImageObjectExtended } from '~/types/image';
+
+import { Image } from '../image';
 
 export const VideoPoster = ({
   poster,

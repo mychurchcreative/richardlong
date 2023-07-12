@@ -1,9 +1,10 @@
 import { RiDraftLine } from 'react-icons/ri';
 import { defineField, defineType } from 'sanity';
 
+import { isAdminUser } from '~/sanity/lib/helpers';
+
 import slug from '../objects/slug';
 import title from '../objects/title';
-import { isAdminUser } from '~/sanity/lib/helpers';
 
 export default defineType({
   name: 'post',
@@ -40,9 +41,27 @@ export default defineType({
     title,
     slug('blog'),
     defineField({
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'text',
+      rows: 3,
+      description:
+        'This is used for the meta description as well as the preview text on the devotionals page.',
+    }),
+    defineField({
       name: 'body',
       title: 'Body',
       type: 'portableText',
+    }),
+    defineField({
+      name: 'publishedAt',
+      title: 'Published On',
+      description:
+        'You can set this to a date in the future to schedule a post or set it to a date in the past to backdate a post. Defaults to the current date.',
+      type: 'date',
+      options: {
+        dateFormat: 'MMMM D, YYYY',
+      },
     }),
     defineField({
       name: 'featuredImage',

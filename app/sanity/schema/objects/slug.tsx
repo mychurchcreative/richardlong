@@ -1,7 +1,6 @@
-import { Flex, Stack, Text, TextInput } from '@sanity/ui';
 import { defineField } from 'sanity';
-import { SlugInput } from '~/sanity/components/inputs/slugInput';
 
+import { SlugInput } from '~/sanity/components/inputs/slugInput';
 import { formatSlug, validateSlug } from '~/sanity/lib/helpers';
 
 /**

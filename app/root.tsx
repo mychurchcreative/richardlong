@@ -1,9 +1,5 @@
 import { cssBundleHref } from '@remix-run/css-bundle';
-import type {
-  LinksFunction,
-  LoaderArgs,
-  V2_MetaFunction,
-} from '@remix-run/node';
+import type { LinksFunction, LoaderArgs } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import {
   Links,
@@ -116,7 +112,6 @@ export const loader = async ({ request, params }: LoaderArgs) => {
     // This is useful to show live preview to unauthenticated users
     // If you would rather not, replace token with `null` and it will rely on your Studio auth
     token: preview ? token : null,
-    // themePreference,
     production,
     ENV: {
       SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
@@ -164,7 +159,7 @@ const Document: FunctionComponent<{
 };
 
 export default function App() {
-  const { ENV, settings, isStudio, preview, siteTitle, production } =
+  const { ENV, settings, isStudio, preview, siteTitle } =
     useLoaderData<typeof loader>();
 
   const { gtmID } = settings ?? {};

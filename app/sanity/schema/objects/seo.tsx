@@ -1,5 +1,6 @@
-import { defineField } from 'sanity';
 import { HelpCircleIcon } from '@sanity/icons';
+import { defineField } from 'sanity';
+
 import { TextInputWithCharCount } from '~/sanity/components/inputs/TextInputWithCharCount';
 
 export default {

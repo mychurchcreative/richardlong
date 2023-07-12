@@ -9,6 +9,7 @@ export const devotionalZ = sanityDocumentZ.extend({
   _type: z.literal('devotional'),
   title: z.string().optional(),
   slug: z.string().optional(),
+  excerpt: z.string().optional(),
   body: richTextZ.optional().nullable(),
   featuredImage: sanityImageObjectExtendedZ.nullable().optional(),
   seo: seoZ.optional(),

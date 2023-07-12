@@ -6,7 +6,7 @@ import { Prose } from '../prose';
 import { RichText } from '../richText';
 
 const Post = ({ post }: { post: Post }) => {
-  const { title, body, featuredImage, publishedAt } = post;
+  const { title, body, publishedAt } = post;
 
   return (
     <Container className="mt-16 lg:mt-32">

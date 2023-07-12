@@ -1,16 +1,22 @@
-import { V2_MetaFunction } from '@remix-run/node';
+import type { SerializeFrom, V2_MetaFunction } from '@remix-run/node';
+import { RouteMatch } from '@remix-run/react';
+import { RiFacebookFill } from 'react-icons/ri';
+
 import { Container } from '~/components/container';
 import { Image } from '~/components/image';
+import { Prose } from '~/components/prose';
 import { MailIcon, TwitterIcon } from '~/components/social';
 import { SocialLink } from '~/components/social/socialLink';
 import { useRootLoaderData } from '~/lib/helpers';
-import { loader } from '~/root';
-import { FaFacebookF } from 'react-icons/fa';
-import { RiFacebookFill } from 'react-icons/ri';
-import { Prose } from '~/components/prose';
 
-export const meta: V2_MetaFunction<typeof loader> = ({ params, data }) => {
-  const { siteTitle } = useRootLoaderData();
+import type { loader as rootLoader } from '~/root';
+
+export const meta: V2_MetaFunction = ({ params, data, matches }) => {
+  const rootData = matches.find((match: RouteMatch) => match.id === `root`) as
+    | { data: SerializeFrom<typeof rootLoader> }
+    | undefined;
+
+  const siteTitle = rootData ? rootData.data.siteTitle : '';
 
   const title = ['About', siteTitle].filter(Boolean).join(' | ');
   return [

@@ -1,7 +1,7 @@
 import { PortableText } from '@portabletext/react';
 import React from 'react';
 
-import { RichText, richTextZ } from '~/types/richText';
+import { RichText } from '~/types/richText';
 
 import { RichTextComponents } from './components';
 
