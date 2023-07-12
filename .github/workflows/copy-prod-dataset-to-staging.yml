@@ -1,0 +1,36 @@
+name: Copy Sanity Production Dataset To Staging
+on:
+  push:
+    branches:
+      # only run on staging branch
+      # - "feature/**"
+      - '!production'
+      - '!main'
+      - 'staging'
+jobs:
+  copy-dataset:
+    runs-on: ubuntu-latest
+    name: Export production dataset / import to staging
+    env:
+      SANITY_DATASET: staging
+      SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+      SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
+      SANITY_API_WRITE_TOKEN: ${{ secrets.SANITY_API_WRITE_TOKEN }}
+      SANITY_AUTH_TOKEN: ${{ secrets.SANITY_API_WRITE_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          # Or whatever version you need
+          node-version: '16.x'
+      - name: Double-check branch name
+        # branch "feature/production" would trigger this action
+        # so we will cancel the job if that happens
+        run: |
+          if [ ${GITHUB_REF##*/} = "production" ]; then exit 1; fi
+          if [ ${GITHUB_REF##*/} = "main" ]; then exit 1; fi
+      - name: Install dependencies
+        run: |
+          npm install --legacy-peer-deps
+      - name: Copy dataset
+        run: npx sanity dataset export production production.tar.gz && npx sanity dataset import production.tar.gz staging --replace

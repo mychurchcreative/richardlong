@@ -9,7 +9,3 @@ node_modules
 .DS_Store
 
 .history
-
-TODO.md
-
-.github/workflows/*.yml
