@@ -57,7 +57,7 @@ const AboutRoute = () => {
                 hotspot={image.hotspot}
                 preview={image.asset.metadata?.lqip ?? ''}
                 sizes="(min-width: 1024px) 32rem, 20rem"
-                className="aspect-square rotate-3 rounded-2xl bg-zinc-100 dark:bg-zinc-800"
+                className="aspect-square rotate-3 rounded-2xl bg-zinc-100 dark:bg-zinc-800 grayscale brightness-110 contrast-125"
               />
             </div>
           </div>

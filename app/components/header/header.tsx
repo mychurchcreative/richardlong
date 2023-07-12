@@ -220,7 +220,7 @@ function Avatar({
         preview={image.asset.metadata?.lqip ?? ''}
         sizes={large ? '4rem' : '2.25rem'}
         className={twMerge(
-          'rounded-full bg-zinc-100 dark:bg-zinc-800',
+          'rounded-full bg-zinc-100 dark:bg-zinc-800 grayscale brightness-125 contrast-125',
           large ? 'h-16 w-16' : 'h-9 w-9'
         )}
       />
