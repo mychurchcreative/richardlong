@@ -1,0 +1,55 @@
+name: Backup Routine
+on:
+  workflow_dispatch:
+  schedule:
+    # Runs daily at 04:00 UTC (midnight EST)
+    - cron: '0 4 */1 * *'
+jobs:
+  backup-dataset:
+    runs-on: macos-latest
+    name: Backup dataset
+    env:
+      SANITY_DATASET: production
+      SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+      SANITY_AUTH_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
+      - name: 📅 Get current date
+        id: date
+        run: echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+      - name: 🧱 Setup node
+        uses: actions/setup-node@v3
+        with:
+          # Or whatever version you need
+          node-version: '16.x'
+      - name: 🛍️ Install pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
+      - name: 📒 Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      - name: 👯‍♀️ Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      - name: 📦 Install dependencies
+        run: pnpm install --no-frozen-lockfile
+      - name: 📤 Export dataset
+        run: npx sanity dataset export production backups/backup-${{ steps.date.outputs.CURRENT_DATE }}.tar.gz
+      - name: 💾 Save backup
+        uses: actions/upload-artifact@v3
+        with:
+          name: backup-${{ steps.date.outputs.CURRENT_DATE }}
+          path: backups/backup-${{ steps.date.outputs.CURRENT_DATE }}.tar.gz
+          retention-days: 90
+          # Fails the workflow if no files are found; defaults to 'warn'
+          if-no-files-found: error
