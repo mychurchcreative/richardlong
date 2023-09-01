@@ -91,21 +91,21 @@ export const defaultDocumentNode: DefaultDocumentNodeResolver = (
     .icon(RiEyeLine)
     .title('Web Preview');
 
-  const referencesPane = S.view
-    .component(DocumentsPane)
-    .options({
-      query: `*[!(_id in path("drafts.**")) && references($id)]`,
-      params: { id: `_id` },
-    })
-    .icon(VscReferences)
-    .title('References');
+  // const referencesPane = S.view
+  //   .component(DocumentsPane)
+  //   .options({
+  //     query: `*[!(_id in path("drafts.**")) && references($id)]`,
+  //     params: { id: `_id` },
+  //   })
+  //   .icon(VscReferences)
+  //   .title('References');
 
   if ([post.name as string, devotional.name].includes(schemaType)) {
     return S.document().views([
       // Default form view
       S.view.form().icon(RiEditLine),
       previewView,
-      referencesPane,
+      // referencesPane,
     ]);
   }
   return S.document().views([S.view.form()]);
